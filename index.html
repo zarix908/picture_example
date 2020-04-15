@@ -4,44 +4,13 @@
 	<title>Example</title>
 </head>
 <body>
-	<div class="icons">
+	{% if icons[0] %}
 		<?xml version="1.0" ?><svg height="24" version="1.1" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><g transform="translate(0 -1028.4)"><path d="m7 1031.4c-1.5355 0-3.0784 0.5-4.25 1.7-2.3431 2.4-2.2788 6.1 0 8.5l9.25 9.8 9.25-9.8c2.279-2.4 2.343-6.1 0-8.5-2.343-2.3-6.157-2.3-8.5 0l-0.75 0.8-0.75-0.8c-1.172-1.2-2.7145-1.7-4.25-1.7z" fill="#c0392b"/></g></svg>
-	</div>
-	<div class="icons">
+	{% endif %}
+	{% if icons[1] %}
 		<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg height="67px" id="Layer_1" style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="67px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M29.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M34,64C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:#3A589B;"/></svg>
-	</div>
-	<button onclick="addHeart()">add heart</button>
-	<button onclick="addFacebook()">add facebook</button>
+	{% endif %}
+	<a href="http://localhost:5000/heart/enable">add heart</a>
+	<a href="http://localhost:5000/facebook/enable">add facebook</a>
 </body>
-<script type="text/javascript">
-	const icons = document.getElementsByClassName("icons");
-
-	function showIcons(iconsEnabling) {
-		for (let i = 0; i < icons.length; i++) {
-			const isEnabled = iconsEnabling["icons"][i]
-
-			if (!isEnabled) {
-				icons[i].style.display = "none";
-			} else {
-				icons[i].style.display = "block";
-			}
-		}
-	}
-
-	fetch('http://localhost:5000/icons')
-		.then(d => d.json())
-		.then(showIcons)
-
-	function addHeart() {
-		fetch('http://localhost:5000/heart/enable')
-			.then(d => d.json())
-			.then(showIcons)
-	}
-
-	function addFacebook() {
-		fetch('http://localhost:5000/facebook/enable')
-			.then(d => d.json())
-			.then(showIcons)
-	}
-</script>
 </html>
